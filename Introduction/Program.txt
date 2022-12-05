@@ -1,0 +1,106 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Introduction
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int number = 10;
+            int number2;
+
+            char c = 'A';
+            string s = "Welcome to the practice program!";
+            bool b = false;
+
+            Console.WriteLine("number = {0}, c = {1}", number, c);
+
+            number2 = 20;
+            number = 20;
+            s = "Text";
+
+            Console.WriteLine("Hello World!");
+            
+            Console.WriteLine("number = {0}, b = {1}", number, b);
+
+            Console.WriteLine(s);
+
+
+            if(number == number2)
+            {
+                Console.WriteLine("numbers are equal!");
+            } else
+            {
+                Console.WriteLine("number are not equal!");
+            }
+
+            if(number < 5)
+            {
+                Console.WriteLine("number is less than 5!");
+            } else if(number < 15) {
+                Console.WriteLine("number is less than 15!");
+            } else
+            {
+                Console.WriteLine("number is greater than 15!");
+            }
+
+            for(int i = 1; i <= 5; i++)
+            {
+                Console.WriteLine("i = {0}", i);
+            }
+
+            Console.WriteLine("");
+
+            number2 = 50;
+            while(number2 < 50)
+            {
+                Console.WriteLine("number2 = {0}", number2);
+                number2++;
+            }
+
+            Console.WriteLine("");
+
+            number2 = 50;
+            do
+            {
+                Console.WriteLine("number2 = {0}", number2);
+                number2++;
+
+            } while(number2 < 50);
+
+
+            Console.WriteLine("");
+
+            for (int i = 1; i <= number2; i++)
+            {
+                if(i % 2 != 0)
+                {
+                    Console.Write("{0} ", i);
+                }
+            }
+
+            Console.WriteLine("");
+
+            int n1, n2;
+
+            Console.WriteLine("Please enter first number and confirm with enter key");
+
+            string s1 = Console.ReadLine();
+            Console.WriteLine("Please enter second number and confirm with enter key");
+
+            string s2 = Console.ReadLine();
+
+            n1 = int.Parse(s1);
+            n2 = int.Parse(s2);
+
+            Console.WriteLine("You entered {0}, {1}", n1, n2);
+
+
+            Console.ReadKey();
+        }
+    }
+}
