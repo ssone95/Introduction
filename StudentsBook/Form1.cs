@@ -68,7 +68,7 @@ namespace StudentsBook
 
                 connectionIsEstablished = true;
 
-                RefreshData();
+                RefreshData(txtFilter.Text);
             }
             catch(Exception ex)
             {
@@ -101,15 +101,12 @@ namespace StudentsBook
                     int result = command.ExecuteNonQuery();
 
                     Console.WriteLine($"Insert completed, number of rows changed: {result}");
-                    if(result > 0)
-                    {
-                        MessageBox.Show("Student was added to the DB!");
-                    } else
+                    if(result < 1)
                     {
                         MessageBox.Show("Student was not added to the DB!");
                     }
                 }
-                RefreshData();
+                RefreshData(txtFilter.Text);
             }
             catch (Exception ex)
             {
@@ -140,16 +137,49 @@ namespace StudentsBook
                     int result = command.ExecuteNonQuery();
 
                     Console.WriteLine($"Delete completed, number of rows changed: {result}");
-                    if (result > 0)
-                    {
-                        MessageBox.Show("Student was deactivated in the DB!");
-                    }
-                    else
+                    if (result < 1)
                     {
                         MessageBox.Show("Student was not deactivated in the DB!");
                     }
                 }
-                RefreshData();
+                RefreshData(txtFilter.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex}");
+            }
+        }
+
+        void UpdateStudent(Student student)
+        {
+            try
+            {
+                if (student == null)
+                {
+                    throw new ArgumentNullException("Student is not valid!");
+                }
+
+                student.UpdatedAt = DateTime.Now;
+
+                string sqlQuery = $"UPDATE Students SET Name = @Name, Surname = @Surname, DateOfBirth = @DateOfBirth, UpdatedAt = @UpdatedAt WHERE Id = @Id;";
+
+                using (var command = new SqlCommand(sqlQuery, _connection))
+                {
+                    command.Parameters.Add(new SqlParameter("@Id", student.Id));
+                    command.Parameters.Add(new SqlParameter("@Name", student.Name));
+                    command.Parameters.Add(new SqlParameter("@Surname", student.Surname));
+                    command.Parameters.Add(new SqlParameter("@DateOfBirth", student.DateOfBirth));
+                    command.Parameters.Add(new SqlParameter("@UpdatedAt", student.UpdatedAt));
+
+                    int result = command.ExecuteNonQuery();
+
+                    Console.WriteLine($"Delete completed, number of rows changed: {result}");
+                    if (result < 1)
+                    {
+                        MessageBox.Show("Student was not updated in the DB!");
+                    }
+                }
+                RefreshData(txtFilter.Text);
             }
             catch (Exception ex)
             {
@@ -187,49 +217,62 @@ namespace StudentsBook
             dgStudentsList.DataSource = Students;
         }
 
-        void RefreshData()
+        void RefreshData(string filterString)
         {
             Students = new List<Student>();
             try
             {
-                using(var command = new SqlCommand("SELECT * FROM Students;", _connection))
-                using(var reader = command.ExecuteReader())
+                string searchQuery = "SELECT * FROM Students;";
+
+                if(!string.IsNullOrEmpty(filterString))
                 {
+                    searchQuery = "SELECT * FROM Students WHERE Name LIKE @FilterString OR Surname LIKE @FilterString OR UniqueNumber LIKE @FilterString;";
+                }
+                using (var command = new SqlCommand(searchQuery, _connection))
+                {
+                    if (!string.IsNullOrEmpty(filterString))
+                    {
+                        command.Parameters.Add(new SqlParameter("@FilterString", "%" + filterString + "%"));
+                    }
+                    using (var reader = command.ExecuteReader())
+                    {
 
-                    if(reader.HasRows == false)
-                    {
-                        MessageBox.Show($"No data found in the Students table!");
-                    } 
-                    else
-                    {
-                        while(reader.Read())
+                        if (reader.HasRows == false)
                         {
-                            try
+                            MessageBox.Show($"No data found in the Students table!");
+                        }
+                        else
+                        {
+                            while (reader.Read())
                             {
-                                var id = reader.GetGuid(0);
-                                var uniqueNumber = string.Empty;
-
-                                if(!reader.IsDBNull(1))
+                                try
                                 {
-                                    uniqueNumber = reader.GetString(1);
+                                    var id = reader.GetGuid(0);
+                                    var uniqueNumber = string.Empty;
+
+                                    if (!reader.IsDBNull(1))
+                                    {
+                                        uniqueNumber = reader.GetString(1);
+                                    }
+                                    var name = reader.GetString(2);
+                                    var surname = reader.GetString(3);
+                                    var dateOfBirth = reader.GetDateTime(4);
+                                    var active = reader.GetBoolean(5);
+                                    var lastUpdatedAt = reader.GetDateTime(6);
+
+                                    var student = new Student(id, uniqueNumber, name, surname, dateOfBirth, active, lastUpdatedAt);
+                                    Students.Add(student);
                                 }
-                                var name = reader.GetString(2);
-                                var surname = reader.GetString(3);
-                                var dateOfBirth = reader.GetDateTime(4);
-                                var active = reader.GetBoolean(5);
-                                var lastUpdatedAt = reader.GetDateTime(6);
+                                catch (Exception ex2)
+                                {
+                                    MessageBox.Show($"{ex2}", "An unexpected error has occurred!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
 
-                                var student = new Student(id, uniqueNumber, name, surname, dateOfBirth, active, lastUpdatedAt);
-                                Students.Add(student);
                             }
-                            catch(Exception ex2)
-                            {
-                                MessageBox.Show($"{ex2}", "An unexpected error has occurred!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-
                         }
                     }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -275,8 +318,6 @@ namespace StudentsBook
                     .FirstOrDefault();
 
                 DeleteStudent(studentInList);
-
-                RefreshData();
             }
         }
 
@@ -333,6 +374,8 @@ namespace StudentsBook
             student.Surname = surname;
             student.DateOfBirth = dateOfBirth;
 
+            UpdateStudent(student);
+
             //SaveStudents();
             //LoadStudents();
         }
@@ -355,6 +398,11 @@ namespace StudentsBook
                     dgStudentsList.ClearSelection();
                 }
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            RefreshData(txtFilter.Text);
         }
     }
 }
