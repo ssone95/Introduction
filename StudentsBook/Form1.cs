@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using static System.Windows.Forms.DataGridView;
 
 namespace StudentsBook
@@ -68,7 +69,7 @@ namespace StudentsBook
 
                 connectionIsEstablished = true;
 
-                RefreshData(txtFilter.Text);
+                RefreshData(txtFilter.Text, dtStartingDate.Value.Date, dtEndingDate.Value.Date, cbIncludeInactive.Checked);
             }
             catch(Exception ex)
             {
@@ -106,7 +107,7 @@ namespace StudentsBook
                         MessageBox.Show("Student was not added to the DB!");
                     }
                 }
-                RefreshData(txtFilter.Text);
+                RefreshData(txtFilter.Text, dtStartingDate.Value.Date, dtEndingDate.Value.Date, cbIncludeInactive.Checked);
             }
             catch (Exception ex)
             {
@@ -142,7 +143,7 @@ namespace StudentsBook
                         MessageBox.Show("Student was not deactivated in the DB!");
                     }
                 }
-                RefreshData(txtFilter.Text);
+                RefreshData(txtFilter.Text, dtStartingDate.Value.Date, dtEndingDate.Value.Date, cbIncludeInactive.Checked);
             }
             catch (Exception ex)
             {
@@ -179,7 +180,7 @@ namespace StudentsBook
                         MessageBox.Show("Student was not updated in the DB!");
                     }
                 }
-                RefreshData(txtFilter.Text);
+                RefreshData(txtFilter.Text, dtStartingDate.Value.Date, dtEndingDate.Value.Date, cbIncludeInactive.Checked);
             }
             catch (Exception ex)
             {
@@ -217,22 +218,37 @@ namespace StudentsBook
             dgStudentsList.DataSource = Students;
         }
 
-        void RefreshData(string filterString)
+        void RefreshData(string filterString, DateTime startingDate, DateTime endingDate, bool includeInactive)
         {
             Students = new List<Student>();
             try
             {
-                string searchQuery = "SELECT * FROM Students;";
+                string searchQuery = "SELECT * FROM Students WHERE ";
 
                 if(!string.IsNullOrEmpty(filterString))
                 {
-                    searchQuery = "SELECT * FROM Students WHERE Name LIKE @FilterString OR Surname LIKE @FilterString OR UniqueNumber LIKE @FilterString;";
+                    searchQuery += "(Name LIKE @FilterString OR Surname LIKE @FilterString OR UniqueNumber LIKE @FilterString) AND ";
                 }
+
+                searchQuery += "DateOfBirth BETWEEN @StartingDate AND @EndingDate ";
+
+                if (!includeInactive)
+                {
+                    searchQuery += "AND Active = @Active";
+                }
+
                 using (var command = new SqlCommand(searchQuery, _connection))
                 {
                     if (!string.IsNullOrEmpty(filterString))
                     {
                         command.Parameters.Add(new SqlParameter("@FilterString", "%" + filterString + "%"));
+                    }
+                    command.Parameters.Add(new SqlParameter("@StartingDate", startingDate));
+                    command.Parameters.Add(new SqlParameter("@EndingDate", endingDate));
+
+                    if(!includeInactive)
+                    {
+                        command.Parameters.Add(new SqlParameter("@Active", true));
                     }
                     using (var reader = command.ExecuteReader())
                     {
@@ -402,7 +418,22 @@ namespace StudentsBook
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            RefreshData(txtFilter.Text);
+            RefreshData(txtFilter.Text, dtStartingDate.Value.Date, dtEndingDate.Value.Date, cbIncludeInactive.Checked);
+        }
+
+        private void dtStartingDate_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData(txtFilter.Text, dtStartingDate.Value.Date, dtEndingDate.Value.Date, cbIncludeInactive.Checked);
+        }
+
+        private void dtEndingDate_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData(txtFilter.Text, dtStartingDate.Value.Date, dtEndingDate.Value.Date, cbIncludeInactive.Checked);
+        }
+
+        private void cbIncludeInactive_CheckedChanged(object sender, EventArgs e)
+        {
+            RefreshData(txtFilter.Text, dtStartingDate.Value.Date, dtEndingDate.Value.Date, cbIncludeInactive.Checked);
         }
     }
 }

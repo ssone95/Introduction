@@ -43,8 +43,11 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dtBirthdate = new System.Windows.Forms.DateTimePicker();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.txtFilter = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.txtFilter = new System.Windows.Forms.TextBox();
+            this.dtEndingDate = new System.Windows.Forms.DateTimePicker();
+            this.dtStartingDate = new System.Windows.Forms.DateTimePicker();
+            this.cbIncludeInactive = new System.Windows.Forms.CheckBox();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uniqueNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -241,6 +244,9 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.cbIncludeInactive);
+            this.groupBox3.Controls.Add(this.dtStartingDate);
+            this.groupBox3.Controls.Add(this.dtEndingDate);
             this.groupBox3.Controls.Add(this.btnSearch);
             this.groupBox3.Controls.Add(this.txtFilter);
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
@@ -250,27 +256,66 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Filter";
             // 
-            // txtFilter
-            // 
-            this.txtFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFilter.Location = new System.Drawing.Point(3, 12);
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(896, 20);
-            this.txtFilter.TabIndex = 0;
-            // 
             // btnSearch
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(905, 11);
+            this.btnSearch.Location = new System.Drawing.Point(905, 12);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(127, 23);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFilter.Location = new System.Drawing.Point(3, 13);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(397, 20);
+            this.txtFilter.TabIndex = 0;
+            // 
+            // dtEndingDate
+            // 
+            this.dtEndingDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtEndingDate.Location = new System.Drawing.Point(707, 13);
+            this.dtEndingDate.MaxDate = new System.DateTime(2005, 12, 31, 0, 0, 0, 0);
+            this.dtEndingDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtEndingDate.Name = "dtEndingDate";
+            this.dtEndingDate.Size = new System.Drawing.Size(192, 20);
+            this.dtEndingDate.TabIndex = 2;
+            this.dtEndingDate.Value = new System.DateTime(2005, 12, 31, 0, 0, 0, 0);
+            this.dtEndingDate.ValueChanged += new System.EventHandler(this.dtEndingDate_ValueChanged);
+            // 
+            // dtStartingDate
+            // 
+            this.dtStartingDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtStartingDate.Location = new System.Drawing.Point(509, 13);
+            this.dtStartingDate.MaxDate = new System.DateTime(2005, 12, 31, 0, 0, 0, 0);
+            this.dtStartingDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtStartingDate.Name = "dtStartingDate";
+            this.dtStartingDate.Size = new System.Drawing.Size(192, 20);
+            this.dtStartingDate.TabIndex = 2;
+            this.dtStartingDate.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtStartingDate.ValueChanged += new System.EventHandler(this.dtStartingDate_ValueChanged);
+            // 
+            // cbIncludeInactive
+            // 
+            this.cbIncludeInactive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbIncludeInactive.AutoSize = true;
+            this.cbIncludeInactive.Location = new System.Drawing.Point(406, 15);
+            this.cbIncludeInactive.Name = "cbIncludeInactive";
+            this.cbIncludeInactive.Size = new System.Drawing.Size(102, 17);
+            this.cbIncludeInactive.TabIndex = 3;
+            this.cbIncludeInactive.Text = "Include Inactive";
+            this.cbIncludeInactive.UseVisualStyleBackColor = true;
+            this.cbIncludeInactive.CheckedChanged += new System.EventHandler(this.cbIncludeInactive_CheckedChanged);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -376,6 +421,9 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtFilter;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.DateTimePicker dtStartingDate;
+        private System.Windows.Forms.DateTimePicker dtEndingDate;
+        private System.Windows.Forms.CheckBox cbIncludeInactive;
     }
 }
 
