@@ -30,24 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgStudentsList = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.txtSurname = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.dtBirthdate = new System.Windows.Forms.DateTimePicker();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cbIncludeInactive = new System.Windows.Forms.CheckBox();
+            this.dtStartingDate = new System.Windows.Forms.DateTimePicker();
+            this.dtEndingDate = new System.Windows.Forms.DateTimePicker();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtFilter = new System.Windows.Forms.TextBox();
-            this.dtEndingDate = new System.Windows.Forms.DateTimePicker();
-            this.dtStartingDate = new System.Windows.Forms.DateTimePicker();
-            this.cbIncludeInactive = new System.Windows.Forms.CheckBox();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uniqueNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,41 +87,11 @@
             this.dgStudentsList.SelectionChanged += new System.EventHandler(this.dgStudentsList_SelectionChanged);
             this.dgStudentsList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgStudentsList_MouseClick);
             // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Name";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Surname";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 55);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Date of Birth";
-            // 
             // btnAdd
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.btnAdd, 2);
             this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAdd.Location = new System.Drawing.Point(3, 325);
+            this.btnAdd.Location = new System.Drawing.Point(3, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(320, 41);
             this.btnAdd.TabIndex = 2;
@@ -135,27 +99,11 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // txtName
-            // 
-            this.txtName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtName.Location = new System.Drawing.Point(75, 3);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(248, 20);
-            this.txtName.TabIndex = 3;
-            // 
-            // txtSurname
-            // 
-            this.txtSurname.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSurname.Location = new System.Drawing.Point(75, 29);
-            this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(248, 20);
-            this.txtSurname.TabIndex = 3;
-            // 
             // btnDelete
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.btnDelete, 2);
             this.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDelete.Location = new System.Drawing.Point(3, 419);
+            this.btnDelete.Location = new System.Drawing.Point(3, 97);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(320, 41);
             this.btnDelete.TabIndex = 2;
@@ -167,7 +115,7 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.btnUpdate, 2);
             this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnUpdate.Location = new System.Drawing.Point(3, 372);
+            this.btnUpdate.Location = new System.Drawing.Point(3, 50);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(320, 41);
             this.btnUpdate.TabIndex = 2;
@@ -205,40 +153,23 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnDelete, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.btnUpdate, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.btnAdd, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtName, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtSurname, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dtBirthdate, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnDelete, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnUpdate, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnAdd, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(326, 463);
             this.tableLayoutPanel1.TabIndex = 4;
-            // 
-            // dtBirthdate
-            // 
-            this.dtBirthdate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtBirthdate.Location = new System.Drawing.Point(72, 52);
-            this.dtBirthdate.Margin = new System.Windows.Forms.Padding(0);
-            this.dtBirthdate.MaxDate = new System.DateTime(2005, 12, 31, 0, 0, 0, 0);
-            this.dtBirthdate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtBirthdate.Name = "dtBirthdate";
-            this.dtBirthdate.Size = new System.Drawing.Size(254, 20);
-            this.dtBirthdate.TabIndex = 4;
-            this.dtBirthdate.Value = new System.DateTime(2005, 12, 31, 0, 0, 0, 0);
             // 
             // groupBox3
             // 
@@ -255,6 +186,45 @@
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Filter";
+            // 
+            // cbIncludeInactive
+            // 
+            this.cbIncludeInactive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbIncludeInactive.AutoSize = true;
+            this.cbIncludeInactive.Location = new System.Drawing.Point(406, 15);
+            this.cbIncludeInactive.Name = "cbIncludeInactive";
+            this.cbIncludeInactive.Size = new System.Drawing.Size(102, 17);
+            this.cbIncludeInactive.TabIndex = 3;
+            this.cbIncludeInactive.Text = "Include Inactive";
+            this.cbIncludeInactive.UseVisualStyleBackColor = true;
+            this.cbIncludeInactive.CheckedChanged += new System.EventHandler(this.cbIncludeInactive_CheckedChanged);
+            // 
+            // dtStartingDate
+            // 
+            this.dtStartingDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtStartingDate.Location = new System.Drawing.Point(509, 13);
+            this.dtStartingDate.MaxDate = new System.DateTime(2005, 12, 31, 0, 0, 0, 0);
+            this.dtStartingDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtStartingDate.Name = "dtStartingDate";
+            this.dtStartingDate.Size = new System.Drawing.Size(192, 20);
+            this.dtStartingDate.TabIndex = 2;
+            this.dtStartingDate.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtStartingDate.ValueChanged += new System.EventHandler(this.dtStartingDate_ValueChanged);
+            // 
+            // dtEndingDate
+            // 
+            this.dtEndingDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtEndingDate.Location = new System.Drawing.Point(707, 13);
+            this.dtEndingDate.MaxDate = new System.DateTime(2005, 12, 31, 0, 0, 0, 0);
+            this.dtEndingDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtEndingDate.Name = "dtEndingDate";
+            this.dtEndingDate.Size = new System.Drawing.Size(192, 20);
+            this.dtEndingDate.TabIndex = 2;
+            this.dtEndingDate.Value = new System.DateTime(2005, 12, 31, 0, 0, 0, 0);
+            this.dtEndingDate.ValueChanged += new System.EventHandler(this.dtEndingDate_ValueChanged);
             // 
             // btnSearch
             // 
@@ -277,45 +247,6 @@
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(397, 20);
             this.txtFilter.TabIndex = 0;
-            // 
-            // dtEndingDate
-            // 
-            this.dtEndingDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtEndingDate.Location = new System.Drawing.Point(707, 13);
-            this.dtEndingDate.MaxDate = new System.DateTime(2005, 12, 31, 0, 0, 0, 0);
-            this.dtEndingDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtEndingDate.Name = "dtEndingDate";
-            this.dtEndingDate.Size = new System.Drawing.Size(192, 20);
-            this.dtEndingDate.TabIndex = 2;
-            this.dtEndingDate.Value = new System.DateTime(2005, 12, 31, 0, 0, 0, 0);
-            this.dtEndingDate.ValueChanged += new System.EventHandler(this.dtEndingDate_ValueChanged);
-            // 
-            // dtStartingDate
-            // 
-            this.dtStartingDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtStartingDate.Location = new System.Drawing.Point(509, 13);
-            this.dtStartingDate.MaxDate = new System.DateTime(2005, 12, 31, 0, 0, 0, 0);
-            this.dtStartingDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtStartingDate.Name = "dtStartingDate";
-            this.dtStartingDate.Size = new System.Drawing.Size(192, 20);
-            this.dtStartingDate.TabIndex = 2;
-            this.dtStartingDate.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtStartingDate.ValueChanged += new System.EventHandler(this.dtStartingDate_ValueChanged);
-            // 
-            // cbIncludeInactive
-            // 
-            this.cbIncludeInactive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbIncludeInactive.AutoSize = true;
-            this.cbIncludeInactive.Location = new System.Drawing.Point(406, 15);
-            this.cbIncludeInactive.Name = "cbIncludeInactive";
-            this.cbIncludeInactive.Size = new System.Drawing.Size(102, 17);
-            this.cbIncludeInactive.TabIndex = 3;
-            this.cbIncludeInactive.Text = "Include Inactive";
-            this.cbIncludeInactive.UseVisualStyleBackColor = true;
-            this.cbIncludeInactive.CheckedChanged += new System.EventHandler(this.cbIncludeInactive_CheckedChanged);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -387,7 +318,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).EndInit();
@@ -398,12 +328,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgStudentsList;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.TextBox txtSurname;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -417,7 +342,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn activeDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn updatedAtDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource studentBindingSource;
-        private System.Windows.Forms.DateTimePicker dtBirthdate;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtFilter;
         private System.Windows.Forms.Button btnSearch;

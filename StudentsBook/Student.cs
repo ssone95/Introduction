@@ -12,11 +12,11 @@ namespace StudentsBook
         public string UniqueNumber { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; } = new DateTime(1990, 1, 1);
         public bool Active { get; set; }
         public DateTime UpdatedAt { get; set; }
 
-
+        public Student() { }
 
         public Student(Guid id, string uniqueNumber, string name, string surname, DateTime dateOfBirth, bool active, DateTime updatedAt)
         {
